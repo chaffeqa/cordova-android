@@ -73,7 +73,7 @@ function parseOpts(options, resolvedTarget, projectRoot) {
     var packageArgs = {};
 
     if (options.argv.keystore)
-        packageArgs.keystore = path.relative(projectRoot, path.resolve(options.argv.keystore));
+        packageArgs.keystore = options.argv.keystore[0] == '/' ? path.resolve(options.argv.keystore) : path.relative(projectRoot, path.resolve(options.argv.keystore));
 
     ['alias','storePassword','password','keystoreType'].forEach(function (flagName) {
         if (options.argv[flagName])
